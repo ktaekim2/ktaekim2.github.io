@@ -104,7 +104,7 @@ analytics:
 author:
   name             : "김프린"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
+  bio              : "웹 개발자를 목표로 공부하는 프린이입니다."
   location         : "South Korea"
   email            :
   links:
