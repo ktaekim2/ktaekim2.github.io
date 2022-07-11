@@ -34,4 +34,26 @@ title: "생활코딩-GIT CLI-Branch & Conflict"
 <img src="..\assets\images\2022-07-06-2319.excalidraw.svg">
 
 ## 병합 : 같은파일, 다른부분 병합
+merge 시, 충돌 없이 합쳐짐
 
+## 병합 : 같은파일, 같은부분 병합
+- 충돌이 일어난 부분을 branch 이름을 경계로 보여줌.
+- 이 부분을 수정하고 다시 working tree에 add하면 충돌이 고쳐졌다는 문구가 나옴.
+- commit하면 끝
+
+## 3 way merge
+
+branch1|base|branch2|2 way merge|3 way merge
+---|---|---|---|---
+A|A|A|A|A
+H|B|B|?|H
+C|C|T|?|T
+H|D|T|?|?
+
+## checkout
+- `checkout` + 브랜치이름: 그 브랜치의 최신 버전으로 감
+- `checkout` + 버전이름: 해당 버전으로 감(detached)
+
+## checkout vs reset
+- checkout: HEAD가 해당 branch를 가리키게 함
+- reset: 내 branch의 버전을 해당 branch가 가리키고 있는 버전으로 바꿈(기존 버전과의 연결은 끊기면서 삭제됨)
