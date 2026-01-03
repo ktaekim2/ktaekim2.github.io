@@ -154,8 +154,8 @@ Since this hasn't been executed yet, some questions remain:
 I'll find answers to these questions as I operate the blog.
 
 ---
----
 
+{% comment %}
 ## Meta: Writing Analysis
 
 ### Professional English Expressions Used
@@ -197,3 +197,4 @@ What I care about is recording my thought process. Like, why did I choose option
 To be honest, tutorials also take forever to polish. I wanted low-friction publishing. So I use AI to refine my rough notes, which lets me publish way more content without sacrificing my actual thinking.
 
 The trade-off? Yeah, my writing skills might atrophy a bit, and I'm not optimizing for traffic. But I'm optimizing for authenticity and long-term value—for future me, and for people like you who want to understand how I approach problems. That felt like the right call."
+{% endcomment %}

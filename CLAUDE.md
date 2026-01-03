@@ -110,6 +110,33 @@ When creating posts in both Korean and English from raw notes, include:
    - Tone: confident yet logical, demonstrating senior engineer communication style
    - Length: ~150-200 words (1 minute spoken)
 
+### Meta Section Visibility
+
+The Meta section (items 1-4 above) is for personal learning and should be hidden from public view:
+
+- **Wrap entire Meta section with Jekyll comments**:
+  ```liquid
+  {% comment %}
+  ## Meta: Writing Analysis
+
+  ### Professional English Expressions Used
+  ...
+
+  ### Technical Terminology Mapping
+  ...
+
+  ### Structure Rationale
+  ...
+
+  ### Interview Pitch (1-minute script)
+  ...
+  {% endcomment %}
+  ```
+
+- This keeps the content in the markdown file for personal reference
+- But completely excludes it from the rendered HTML
+- Visitors won't see it, even in the page source
+
 ---
 
 ## 6. Git and File System Rules
