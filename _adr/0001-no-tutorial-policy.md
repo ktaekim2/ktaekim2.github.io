@@ -1,9 +1,9 @@
-# ADR-0001: 왜 이 블로그는 튜토리얼을 쓰지 않는가
-
-**Status:** Accepted
-**Date:** 2026-01-03
-**Decision Makers:** ktaekim
-
+---
+layout: post
+title: "ADR-0001: 왜 이 블로그는 튜토리얼을 쓰지 않는가"
+date: 2026-01-03
+status: Accepted
+decision_makers: ktaekim
 ---
 
 ## 1. Context / Problem

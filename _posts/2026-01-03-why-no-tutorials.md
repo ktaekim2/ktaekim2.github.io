@@ -1,8 +1,8 @@
-# 이 블로그는 왜 튜토리얼을 쓰지 않는가
-
-**Published:** 2026-01-03
-**Tags:** #blogging-philosophy #decision-making #meta
-
+---
+layout: post
+title: "이 블로그는 왜 튜토리얼을 쓰지 않는가"
+date: 2026-01-03
+tags: [blogging-philosophy, decision-making, meta]
 ---
 
 ## 문제: 기술 블로그의 목적
@@ -78,14 +78,8 @@ AI로 정리하므로 글 작성 부담이 적다. 튜토리얼은 검증과 완
 이 질문들은 실제로 운영하면서 답을 찾아갈 것이다.
 
 ---
----
 
 # Why This Blog Does Not Write Tutorials
-
-**Published:** 2026-01-03
-**Tags:** #blogging-philosophy #decision-making #meta
-
----
 
 ## The Problem: Purpose of a Technical Blog
 

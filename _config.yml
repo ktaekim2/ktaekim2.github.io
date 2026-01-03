@@ -1,0 +1,56 @@
+# Site Settings
+title: ktaekim's Technical Blog
+description: >-
+  Personal architecture decision log and technical thought process repository.
+  This blog does not write tutorials - it records decision contexts and trade-offs.
+
+author: ktaekim
+email: your-email@example.com
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://ktaekim2.github.io" # the base hostname & protocol
+
+# Build Settings
+markdown: kramdown
+permalink: /posts/:year-:month-:day-:title/
+
+# Collections (for ADRs)
+collections:
+  adr:
+    output: true
+    permalink: /adr/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "adr"
+    values:
+      layout: "post"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .bundle
+  - .sass-cache
+  - .jekyll-cache
+  - .git
+  - CLAUDE.md
+  - scripts
+
+# Pagination
+paginate: 10
+paginate_path: "/page:num/"
+
+# Timezone
+timezone: Asia/Seoul
+
+# Language
+lang: ko
