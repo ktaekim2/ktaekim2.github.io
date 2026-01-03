@@ -102,3 +102,21 @@ decision_makers: ktaekim
 - Rationale: Low-friction publishing via AI refinement, portfolio effect, and maintaining tension through minimal public exposure (20% public, 80% private).
 - Trade-off: Sacrificing broad readership and polished writing skills, but gaining high-volume content creation and authentic thinking records.
 - Open question: How well will AI preserve original thought? How to define the "20% public" boundary?
+
+---
+
+{% comment %}
+## 날것 초안 (맞춤법/띄어쓰기만 수정)
+
+내 블로그의 목적은 누군가를 가르치는 게 아니라, 내 사고 과정, 문제 해결 방법, 의사 결정에 이르기까지의 고민, 왜 이 방법을 선택했는가 하는 그런 흐름에 대해 글을 쓰려고 함. 그리고 블로그 포스팅에 너무 힘을 주지 않으려고 함. 그래서 이 블로그는 기본적으로 내가 막 휘갈겨 쓴 텍스트들을 AI가 정리한 글을 포스팅할 것임. 그렇지만 여전히 그 글은 내 사고 과정을 담고 있기 때문에 내 글이라고 볼 수 있음. 이 블로그는 누군가에게 보여주려는 목적은 적음. 그러면 메모장에 적어도 되지만, 그럼에도 블로그 포스팅을 선택한 이유는 최소한의 정제된 기록을 퍼블릭하게 남기고 싶어서다.
+
+내가 쓴 언어에 비록 논리적 모순이 있어도 교정 불필요. 그저 읽기 쉬운 정제된 하나의 글로써 만들어 주기를 바람. 문법이나 띄어쓰기, 논리 재배치, 톤 조정 등은 필요.
+
+2할의 퍼블릭, 8할의 프라이빗 정도로 생각 중. 블로그의 목적은 수익이 아님, 내 생각, 사고의 정리와 기술적 언어들의 영문화, 그리고 이직 시 지원 회사에서 내가 어떤 사람인지 파악하는 데 도와줄 정보 공개 (그래서 2할의 퍼블릭).
+
+다른 프라이빗 도구를 사용하지 않는 이유는 글에 어느 정도 긴장감을 유지하기 위함임. 공개됨으로써, 조금 더 조사하고 신경 써서 글을 쓰게 될 것이므로. 프라이빗을 하지 않는 이유는 이직용으로 사용하는 용도도 있기 때문임. 일종의 프로그래머, 아키텍트로서 포트폴리오를 만든다고도 볼 수 있음.
+
+내가 쓴 글을 정리하고 다듬는 것이지, 내가 생각하지 못했던 부분을 내용에 추가하거나 해서는 안 됨. 물론 글을 쓰는 과정에서 나 스스로 그 결론에 도달할 수 있도록 힌트나 생각할 거리를 줘서 간접적으로 도와줄 수는 있음.
+
+내가 스스로 정제된 글을 쓰는 능력은 부족해질 수 있음. 대신 단기간에 많은 콘텐츠를 생성할 수 있음.
+{% endcomment %}

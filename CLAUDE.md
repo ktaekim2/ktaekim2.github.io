@@ -59,6 +59,13 @@ When refining raw notes into posts:
   - More structured and formal tone acceptable
   - Focus on decision clarity over personal voice
   - Still preserve thinking process, but more concise
+  - **Always include raw draft**: Add original unrefined draft at the end, wrapped in Jekyll comments
+    ```liquid
+    {% comment %}
+    ## 날것 초안 (맞춤법/띄어쓰기만 수정)
+    [Original draft with only spelling/spacing corrections]
+    {% endcomment %}
+    ```
 
 ### Proactive Feedback After Writing
 
