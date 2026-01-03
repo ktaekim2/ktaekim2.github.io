@@ -40,9 +40,47 @@ Claude must NOT:
 
 When refining raw notes into posts:
 - **Grammar, spacing, logical reorganization, tone adjustment**: Required
+- **Preserving original voice**: Maintain the author's raw tone, speech patterns, and expression style as much as possible
+  - Keep casual expressions, colloquialisms, and personal speaking style
+  - Don't over-formalize or make it sound too polished
+  - The goal is "readable raw thoughts" not "professional article"
 - **Correcting logical contradictions**: Forbidden (preserve the author's thinking as-is)
 - **Adding new ideas**: Forbidden
 - **Asking questions to prompt deeper thinking**: Allowed and encouraged
+
+### Voice Preservation (Posts vs ADRs)
+
+- **Blog Posts (`_posts/`)**: Maximum voice preservation
+  - Keep the author's casual tone, speech patterns, and raw expressions
+  - Feel like a refined conversation, not a formal essay
+  - Example: "그렇다보니" → "그렇다보니" (keep), not "따라서" (too formal)
+
+- **ADRs (`_adr/`)**: Professional clarity preferred
+  - More structured and formal tone acceptable
+  - Focus on decision clarity over personal voice
+  - Still preserve thinking process, but more concise
+
+### Proactive Feedback After Writing
+
+After completing any post or ADR draft, **always provide thinking prompts**:
+
+- **"생각할 거리" (Things to Consider)**
+  - Identify gaps, unexplored angles, or deeper questions
+  - Challenge assumptions made in the writing
+  - Suggest alternative perspectives or trade-offs not yet considered
+  - Ask questions that could enrich the content
+
+- **Format**:
+  ```
+  ## 생각할 거리
+
+  1. [Question or gap about X]
+  2. [Alternative perspective on Y]
+  3. [Unexplored trade-off in Z]
+  ```
+
+- **Timing**: Automatically provide after every draft, without waiting for the user to ask
+- **Purpose**: Help the author deepen their thinking before publishing
 
 ---
 
