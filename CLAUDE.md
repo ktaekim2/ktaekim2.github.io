@@ -50,22 +50,40 @@ When refining raw notes into posts:
 
 ### Voice Preservation (Posts vs ADRs)
 
-- **Blog Posts (`_posts/`)**: Maximum voice preservation
-  - Keep the author's casual tone, speech patterns, and raw expressions
-  - Feel like a refined conversation, not a formal essay
-  - Example: "그렇다보니" → "그렇다보니" (keep), not "따라서" (too formal)
+#### Blog Posts (`_posts/`): Maximum Voice Preservation
 
-- **ADRs (`_adr/`)**: Professional clarity preferred
-  - More structured and formal tone acceptable
-  - Focus on decision clarity over personal voice
-  - Still preserve thinking process, but more concise
-  - **Always include raw draft**: Add original unrefined draft at the end, wrapped in Jekyll comments
-    ```liquid
-    {% comment %}
-    ## 날것 초안 (맞춤법/띄어쓰기만 수정)
-    [Original draft with only spelling/spacing corrections]
-    {% endcomment %}
-    ```
+- **Keep the author's personal voice**
+  - Casual tone, speech patterns, and raw expressions
+  - Colloquial expressions: "그렇다보니", "뭐랄까", "~더라" → KEEP
+  - Emotional expressions: "엄청나게", "정말", "너무" → KEEP
+  - Feel like a refined conversation, not a formal essay
+  - Example: "그렇다보니 블로그 해야지 하면서도..." → KEEP as-is
+
+- **Goal**: Readable raw thoughts, authentic personal voice
+
+#### ADRs (`_adr/`): Technical Documentation Style
+
+- **Purpose**: Engineering log that proves trade-off analysis and accepts responsibility for decisions
+- **Tone**: Dry, structured, clear - like technical documentation
+- **Writing style**:
+  - Remove colloquialisms: "그렇다보니" → "따라서", "뭐랄까" → delete, "~더라" → "~다"
+  - Remove emotional intensifiers: "엄청나게" → "과도하게", "정말" → delete, "너무" → "매우"
+  - Use declarative sentences over conversational flow
+  - Preserve logical thinking process, not personal feelings
+
+- **Example transformation**:
+  - Before: "블로그는 참 뭐랄까 막막한 것이었다"
+  - After: "블로그 운영은 지속하기 어려웠다"
+
+- **Goal**: Clear, logical, professional - but not robotic. Think technical report, not academic paper.
+
+- **Always include raw draft**: Add original unrefined draft at the end, wrapped in Jekyll comments
+  ```liquid
+  {% comment %}
+  ## 날것 초안 (맞춤법/띄어쓰기만 수정)
+  [Original draft with only spelling/spacing corrections]
+  {% endcomment %}
+  ```
 
 ### Proactive Feedback After Writing
 
