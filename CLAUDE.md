@@ -140,6 +140,43 @@ Unless specified otherwise, posts should follow this structure:
 5. Trade-offs & Risks
 6. Outcome or Open Questions
 
+### ADR Front Matter
+
+**Basic front matter** (required for all ADRs):
+
+```yaml
+---
+layout: post
+title: "ADR-XXXX: Title"
+date: YYYY-MM-DD
+status: Accepted|Proposed|Rejected|Deprecated
+decision_makers: ktaekim
+---
+```
+
+**Career-related front matter** (add only for work/project ADRs):
+
+For ADRs related to actual work projects or career-relevant technical decisions, add:
+
+```yaml
+project_id: project-identifier
+career_relevance: high|medium|low
+tech_stack: [Technology1, Technology2, ...]
+```
+
+**Field descriptions**:
+- `project_id`: Identifier for the project this decision relates to (e.g., "payment-system", "order-service")
+- `career_relevance`: How relevant this decision is for resume and career archive (high/medium/low)
+- `tech_stack`: Array of technologies involved in this decision (e.g., [Kotlin, Kafka, Redis])
+
+**When to add career fields**:
+- ✅ Work project decisions (architecture, tech choices, scaling strategies)
+- ✅ Side projects with production impact
+- ❌ Blog meta decisions (like ADR-0001, 0002)
+- ❌ Personal tooling/workflow decisions
+
+**Purpose**: These fields enable the parent `career-archive` repository to reference and categorize career-relevant ADRs.
+
 ---
 
 ## 5. Language Rules
