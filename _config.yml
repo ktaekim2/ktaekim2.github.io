@@ -42,7 +42,7 @@ exclude:
   - .sass-cache
   - .jekyll-cache
   - .git
-  - CLAUDE.md
+  - GEMINI.md
   - scripts
 
 # Pagination
