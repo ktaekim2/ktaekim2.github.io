@@ -43,7 +43,6 @@ Instead:
 ```
 .
 ├── _posts/         # 기술 블로그 포스트 (Technical blog posts)
-├── _adr/           # 아키텍처 결정 기록 (Architecture Decision Records)
 ├── _layouts/       # Jekyll 레이아웃 템플릿
 ├── assets/         # CSS, JS, 이미지 등
 ├── scripts/        # 블로그 운영 도구 (Blog operation utilities)
@@ -74,7 +73,6 @@ Instead:
 ## Key Documents
 
 - **[GEMINI.md](./GEMINI.md)**: AI 작성 원칙 및 블로그 운영 철학
-- **[ADR-0001](./_adr/0001-no-tutorial-policy.md)**: 왜 이 블로그는 튜토리얼을 쓰지 않는가
 - **[First Post](./_posts/2026-01-03-why-no-tutorials.md)**: 블로그 철학 소개
 
 ---

@@ -13,22 +13,11 @@ url: "https://ktaekim2.github.io" # the base hostname & protocol
 markdown: kramdown
 permalink: /posts/:year-:month-:day-:title/
 
-# Collections (for ADRs)
-collections:
-  adr:
-    output: true
-    permalink: /adr/:name/
-
 # Defaults
 defaults:
   - scope:
       path: ""
       type: "posts"
-    values:
-      layout: "post"
-  - scope:
-      path: ""
-      type: "adr"
     values:
       layout: "post"
 

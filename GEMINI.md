@@ -48,9 +48,7 @@ When refining raw notes into posts:
 - **Adding new ideas**: Forbidden
 - **Asking questions to prompt deeper thinking**: Allowed and encouraged
 
-### Voice Preservation (Posts vs ADRs)
-
-#### Blog Posts (`_posts/`): Maximum Voice Preservation
+### Voice Preservation (Maximum Voice Preservation)
 
 - **Keep the author's personal voice**
   - Casual tone, speech patterns, and raw expressions
@@ -61,33 +59,9 @@ When refining raw notes into posts:
 
 - **Goal**: Readable raw thoughts, authentic personal voice
 
-#### ADRs (`_adr/`): Technical Documentation Style
-
-- **Purpose**: Engineering log that proves trade-off analysis and accepts responsibility for decisions
-- **Tone**: Dry, structured, clear - like technical documentation
-- **Writing style**:
-  - Remove colloquialisms: "그렇다보니" → "따라서", "뭐랄까" → delete, "~더라" → "~다"
-  - Remove emotional intensifiers: "엄청나게" → "과도하게", "정말" → delete, "너무" → "매우"
-  - Use declarative sentences over conversational flow
-  - Preserve logical thinking process, not personal feelings
-
-- **Example transformation**:
-  - Before: "블로그는 참 뭐랄까 막막한 것이었다"
-  - After: "블로그 운영은 지속하기 어려웠다"
-
-- **Goal**: Clear, logical, professional - but not robotic. Think technical report, not academic paper.
-
-- **Always include raw draft**: Add original unrefined draft at the end, wrapped in Jekyll comments
-  ```liquid
-  {% comment %}
-  ## 날것 초안 (맞춤법/띄어쓰기만 수정)
-  [Original draft with only spelling/spacing corrections]
-  {% endcomment %}
-  ```
-
 ### Proactive Feedback After Writing
 
-After completing any post or ADR draft, **always provide thinking prompts**:
+After completing any post draft, **always provide thinking prompts**:
 
 - **"생각할 거리" (Things to Consider)**
   - Identify gaps, unexplored angles, or deeper questions
@@ -139,43 +113,6 @@ Unless specified otherwise, posts should follow this structure:
 4. Decision & Rationale
 5. Trade-offs & Risks
 6. Outcome or Open Questions
-
-### ADR Front Matter
-
-**Basic front matter** (required for all ADRs):
-
-```yaml
----
-layout: post
-title: "ADR-XXXX: Title"
-date: YYYY-MM-DD
-status: Accepted|Proposed|Rejected|Deprecated
-decision_makers: ktaekim
----
-```
-
-**Career-related front matter** (add only for work/project ADRs):
-
-For ADRs related to actual work projects or career-relevant technical decisions, add:
-
-```yaml
-project_id: project-identifier
-career_relevance: high|medium|low
-tech_stack: [Technology1, Technology2, ...]
-```
-
-**Field descriptions**:
-- `project_id`: Identifier for the project this decision relates to (e.g., "payment-system", "order-service")
-- `career_relevance`: How relevant this decision is for resume and career archive (high/medium/low)
-- `tech_stack`: Array of technologies involved in this decision (e.g., [Kotlin, Kafka, Redis])
-
-**When to add career fields**:
-- ✅ Work project decisions (architecture, tech choices, scaling strategies)
-- ✅ Side projects with production impact
-- ❌ Blog meta decisions (like ADR-0001, 0002)
-- ❌ Personal tooling/workflow decisions
-
-**Purpose**: These fields enable the parent `career-archive` repository to reference and categorize career-relevant ADRs.
 
 ---
 
@@ -242,7 +179,7 @@ The Meta section (items 1-4 above) is for personal learning and should be hidden
 ## 6. Git and File System Rules
 
 - Gemini may read and modify markdown files
-- Existing ADRs or posts should not be rewritten unless explicitly requested
+- Existing posts should not be rewritten unless explicitly requested
 - New decisions should be recorded as new files, not overwrites
 
 Preserve history. Evolution matters.
@@ -260,6 +197,27 @@ Not success:
 - Perfect writing
 - High traffic
 - Completeness
+
+---
+
+# Task Management (TaskMaster)
+
+Use **Task Master** (`tm`) for all task tracking and prioritization.
+
+- **Guide:** `../career-archive/knowledge-base/devops/taskmaster-guide.md`
+- **Data Source:** `.taskmaster/tasks/tasks.json`
+
+## Workflow Integration
+1. **Start:** Check `tm list` or `tm next` to identify the current objective.
+2. **Breakdown:** Use `tm expand --id=<id>` to break down complex tasks into subtasks.
+3. **Update:** Keep task status in sync using `tm set-status`.
+4. **Log:** Use `tm update-task` to append notes or findings to specific tasks.
+
+## Key Commands
+- `tm list`: View all tasks.
+- `tm next`: Find the next actionable item.
+- `tm add-task --prompt="..."`: Create a new task.
+- `tm set-status --id=X --status=done`: Mark task X as complete.
 
 ---
 
