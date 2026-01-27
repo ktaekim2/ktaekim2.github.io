@@ -1,0 +1,290 @@
+---
+layout: post
+title: "ADR-0002: 왜 그리고 어떻게 AI 기반 블로깅 파이프라인을 만들었는가"
+date: 2026-01-27 10:00:00 +0900
+categories: [Engineering, DevOps, Productivity]
+tags: [AI, Automation, Blogging, ADR, Workflow]
+description: "블로그 운영의 지속 가능성 문제를 해결하기 위해 구축한 AI 기반 파이프라인(Claude Code + Jekyll)의 설계 의도와 구체적인 구현 방식을 공유합니다. '저마찰 발행'과 '진정성 보존'이라는 상충되는 목표를 어떻게 달성했는지 다룹니다."
+---
+
+## 1. Context / Problem
+
+회사 업무에서 Claude Code, Gemini CLI를 통해 업무 생산성을 대폭 향상시켰다. 이를 통해 AI 활용이 프로그래밍 업무뿐 아니라 다방면 에 적용 가능함을 확인했다.
+
+그러나 블로그 운영은 지속하기 어려운 과제였다.
+
+프로그래머에게 블로깅이 유용한 이유는 명확하다:
+- 복잡한 기술을 타인에게 설명하는 과정에서 이해도가 깊어진다
+- 머릿속 지식을 아웃풋으로 변환해야 장기 기억으로 정착된다
+- 포트폴리오이자 마케팅 수단으로 활용 가능하다
+
+학원 시절부터 여러 차례 블로그를 시작했으나 **지속하지 못했다**.
+
+주요 원인은 **시간 투입량**이다.
+
+블로그는 퍼블릭에 공개되므로:
+- 정제된 글이 요구된다
+- 정보의 정확성이 필요하다
+- 맞춤법, 띄어쓰기 등 형식적 완성도가 요구된다
+
+따라서 글 하나 작성에 대한 부담이 크다.
+
+---
+
+## 2. Constraints & Assumptions
+
+- **목적**: 수익이 아니라 생각 정리 + 이직 시 포트폴리오
+- **핵심 가치**: 내 생각과 기술적 관점을 보여주는 것
+- **AI 활용 경험**: 이미 업무에서 Claude Code, Gemini CLI로 생산성 향상 경험
+- **시간 제약**: 블로그에 과도한 시간을 쓸 수 없음
+- **정제 필요**: 퍼블릭 공개이므로 최소한의 퀄리티는 필요
+- **진정성**: 틀린 생각도 그대로 남아야 함 (내용 수정 불가)
+
+---
+
+## 3. Options Considered
+
+### Option A: 기존 방식 (수동 블로깅)
+- 모든 것을 직접 작성
+- 장점: 완전한 통제, 글쓰기 능력 향상
+- 단점: 시간 소모, 지속 불가능, 맞춤법/띄어쓰기 부담
+
+### Option B: 블로그 포기
+- 블로깅을 아예 하지 않음
+- 장점: 시간 절약
+- 단점: 사고 정리 기회 상실, 포트폴리오 없음
+
+### Option C: AI 기반 블로깅 파이프라인
+- 휘갈겨 쓴 메모 → AI 정제 → 커밋/푸시 자동화
+- 장점: 저마찰 발행, 지속 가능, 영어 학습 병행
+- 단점: AI 의존도, 글쓰기 능력 정체
+
+---
+
+## 4. Decision & Rationale
+
+**Option C: AI 기반 블로깅 파이프라인**을 선택했다.
+
+### 선택 이유
+
+AI를 활용한 글 정제 및 커밋/푸시 자동화를 통해 블로깅 부담을 대폭 감소시킬 수 있다.
+
+이 블로그의 목적은 수익이 아니다. 사고 정리 및 이직 시 기술적 관점 증명이 목표이다.
+
+따라서 프로그래밍 업무에서와 동일하게 Claude Code를 활용하고, CLAUDE.md를 통해 작업 지침을 구조화했다.
+
+**핵심 원칙**:
+- **AI는 글을 정제하되, 사고는 온전히 보존** (틀린 생각 포함)
+- 내용 자체 수정 금지 (프롬프트를 통한 경계 설정)
+- 한영 병행 작성 및 영어 학습 자료 생성
+
+**기대 효과**:
+1. **시간 투입 감소**: 맞춤법, 띄어쓰기, 문법, 논리 재배치를 AI가 처리
+2. **진정성 보존**: 내용은 사용자의 사고에서 발생, AI는 형식만 정제
+3. **영어 학습**: 한영 병행 + 전문 용어 매핑
+4. **지속 가능성**: 부담 감소를 통한 지속적 운영 가능
+
+---
+
+## 5. How: Implementation
+
+### 5.1 CLAUDE.md 작성
+
+Claude Code에게 작업 지침을 제공하는 `CLAUDE.md` 파일을 작성했다:
+
+**핵심 원칙**:
+- **내용 수정 금지**: 논리적 모순이 있어도 그대로 보존
+- **형식 정제 필수**: 문법, 띄어쓰기, 논리 재배치, 톤 조정
+- **한영 병행**: 동일 내용을 한국어, 영어로 작성
+- **Meta 섹션**: 영어 표현 학습, 전문 용어 매핑, 구조 설명, 면접 피치 스크립트
+
+### 5.2 Jekyll 설정
+
+GitHub Pages에서 자동 빌드되도록 Jekyll 설정:
+- `_posts/` 폴더에 마크다운 작성
+- Front Matter로 메타데이터 관리
+- `_config.yml`로 사이트 설정
+- CSS로 미니멀한 디자인
+
+### 5.3 워크플로우
+
+```
+1. 휘갈겨 쓴 메모 작성 (날것의 생각)
+   ↓
+2. Claude Code에게 전달
+   ↓
+3. AI가 CLAUDE.md 원칙에 따라 정제
+   - 문법/띄어쓰기 수정
+   - 한영 병행 작성
+   - Meta 섹션 추가 (Jekyll 주석으로 숨김)
+   ↓
+4. Git 커밋 & 푸시
+   ↓
+5. GitHub Pages 자동 빌드
+```
+
+### 5.4 프롬프팅 전략
+
+**금지 사항**:
+- 내가 쓰지 않은 내용 추가
+- 결론 발명
+- 작가의 말투와 표현 방식 제거 (과도한 형식화)
+
+**허용 및 권장 사항**:
+- **명백한 사실 오류 수정**: "Python은 컴파일 언어다" → 고쳐줌
+- **논리적 모순 지적**: 수정 여부는 내가 판단
+- **문법, 띄어쓰기 교정**: 필수
+- **논리 재배치**: 의미는 보존하되 읽기 쉽게
+- **말투 보존**: "그렇다보니", "뭐랄까" 같은 표현 유지
+- **작가의 색채 보존**: 사람마다 글쓰기에 체취가 남는다. 그걸 없애면 재미가 없다. 맞춤법은 정제하되 작가의 색채는 남긴다.
+- **질문을 통한 사고 유도**: 생각할 거리 제공
+
+### 5.5 영어 학습 전략
+
+Meta 섹션의 영어 표현, 전문 용어 매핑은 학습 자료로 활용한다:
+- 포스트 작성 후 Meta 섹션 복습
+- AI와 음성 대화로 스피킹 연습 (별도 진행)
+- 실효성 측정: 실제 영어 면접에서 검증
+
+---
+
+## 6. Trade-offs & Risks
+
+### 포기한 것
+- **글쓰기 능력 향상 기회**: AI 의존으로 인한 직접 작문 능력 정체 가능성
+- **완전한 통제**: AI 해석에 따른 의도 왜곡 가능성
+
+### 얻은 것
+- **지속 가능성**: 부담 감소를 통한 블로그 운영 지속 가능
+- **영어 학습**: 기술적 사고를 영어로 표현하는 능력 획득
+- **생산성**: 동일 시간 내 콘텐츠 생산량 증가
+- **사고 정리**: 비구조화된 사고의 구조화된 글 변환
+
+### 리스크
+- **AI 오역**: 의도 오해석 가능성 존재 (대응: CLAUDE.md를 통한 경계 설정)
+- **진정성 의심**: AI 활용 사실 공개 여부에 대한 논란 가능성 (판단: 정제만 수행하므로 저자의 글로 간주)
+- **기술 의존**: 도구 부재 시 작성 불가 우려 (완화: 수동 작성 가능)
+
+---
+
+## 7. Outcome & Operational Principles
+
+### 지금까지의 결과
+- ✅ CLAUDE.md 작성 완료
+- ✅ Jekyll 블로그 설정 완료
+- ✅ ADR-0001, 첫 포스트 작성 완료
+- ✅ Meta 섹션 숨김 처리 완료
+
+### 운영 방침
+
+**발행 주기**:
+- 주말 최소 1개 포스팅 목표 (평일은 업무로 인해 어려움)
+- 가능하면 더 작성하되, 최소치는 주 1회
+- 지속 가능성 지표: 포스팅 개수
+
+**중단 시 판단**:
+- 이후 다시 중단 시, 파이프라인 구조의 문제로 판단
+- 이 경우 CLAUDE.md 또는 워크플로우 재검토
+
+**미완성 포스트 처리**:
+- 커밋은 하되 발행하지 않음 (Jekyll의 `published: false` 옵션 활용)
+- 완성 시 발행
+
+**독자 반응 대응** (현재 댓글 기능 없음):
+- 댓글 지적 시 토론 진행
+- 오류 확인 시 수정하되, 원본 포스팅 유지 후 주석 추가
+- 수정 이력 기록
+
+**진정성 입장**:
+- AI로 정제했으나 본인의 글로 간주
+- 사고 흐름이 본인에게서 기원
+- AI는 맞춤법, 문법, 구조만 정제
+- 면접관 질의 시 응답:
+  - **"AI를 활용했다. 프롬프팅으로 원하는 결과를 설정하고, 그 결과를 검토·수정하는 과정은 현재 개발 업계의 바이브 코딩과 동일하다."**
+  - 날것의 메모는 저장하되 공개하지 않음 (정제된 버전과 99% 일치)
+
+**CLAUDE.md 관리**:
+- 고정 문서로 관리 (Claude, Gemini 모두 사용 가능)
+- 수정 시점: 작문 스타일 변화, 섹션 추가, 제약 사항 추가 등
+- 파이프라인 변화 기록은 필요시 검토
+
+**블로깅 목적 우선순위**:
+1. **사고 정리** (최우선)
+2. 이직용 포트폴리오
+3. 영어 학습
+4. 장기 기억 형성
+
+사고가 정리되면 즉시 설명 가능하다. 사고 정리 없이는 AI의 형식적 정제와 무관하게 본인의 생각이 아니다.
+
+### 열린 질문
+- AI 정제 후에도 원본 목소리가 충분히 보존되는가?
+- 영어 학습 효과가 실제로 발생하는가? (영어 면접에서 검증 예정)
+- 이 방식의 지속 가능 기간은?
+- 면접관이 이 블로그를 통해 사고 방식을 이해할 수 있는가?
+
+### 다음 단계
+- 실제 기술 포스트 작성 (튜토리얼 아닌 사고 과정 기록)
+- 3개월 후 회고: 지속 가능한가? 효과가 있는가?
+- CLAUDE.md 지속적 개선 (필요시)
+
+---
+
+## Decision Summary (EN)
+
+- Built an AI-driven blogging pipeline using Claude Code to reduce friction in technical writing
+- Problem: Blogging is valuable but unsustainable due to time burden (grammar, fact-checking, formatting)
+- Solution: AI refines raw notes while preserving authentic thinking (no content modification allowed)
+- Implementation: CLAUDE.md for AI guidelines, Jekyll for static site, bilingual posts with learning-focused Meta sections
+- Trade-off: Sacrificing writing skill improvement, but gaining sustainability and English learning opportunities
+- Open question: Will this approach remain sustainable? Will interviewers understand my thinking through these posts?
+
+---
+
+## 생각할 거리
+
+이 프로젝트를 진행하며 스스로에게 던진, 그리고 앞으로 계속 고민해야 할 질문들입니다.
+
+1. **"바이브 코딩"과의 비교는 설득력이 있는가?**
+   - 면접관이 "바이브 코딩은 코드를 직접 검토하고 수정하지만, 글은 그냥 발행하는 거 아니냐"고 반박한다면? 검토 과정도 문서화가 필요한가?
+
+2. **"창피해서" 날것 메모 공개 안 한다는 이유**
+   - 맞춤법이 틀린 것이 정말 창피한가, 아니면 생각이 정리되지 않은 것이 창피한가? 진정성을 증명하려면 날것 메모 일부라도 공개하는 게 더 설득력 있지 않을까?
+
+3. **주 1회 포스팅 목표의 현실성**
+   - 평일 업무 후 주말에 포스팅 1개 작성이 지속 가능한가? "최소치"라는 목표가 오히려 압박감으로 작용하여 글쓰기를 방해하지는 않을까?
+
+4. **사고 정리 우선순위와 AI 의존의 모순**
+   - "사고가 정리되어야 내 글"이라고 했다. 하지만 AI가 산만한 메모를 훌륭하게 정리해준다면, 사고가 정리되지 않았음에도 정리된 것처럼 착각하게 되지 않을까? 이 경계를 어떻게 인지할 것인가?
+
+5. **AI 일관성 문제**
+   - Claude뿐 아니라 Gemini도 사용하게 될 텐데, 두 AI의 정제 스타일 차이를 허용할 것인가? 아니면 `CLAUDE.md`를 더 엄격하게 정의하여 통일할 것인가?
+
+6. **"틀린 생각도 그대로"의 경계**
+   - 명백한 사실 오류는 고치고, 논리적 모순은 판단한다고 했다. 그렇다면 "A가 좋지만 B도 좋다"는 양면적 사고와 논리적 모순을 AI가 구분할 수 있을까?
+
+7. **3개월 후 회고의 기준**
+   - "지속 가능한가? 효과가 있는가?"를 정량적으로 측정할 방법은 무엇인가? (포스트 개수, 작성 시간, 부담 점수, 영어 실력 등)
+
+{% comment %}
+## Meta: Writing Analysis
+
+### Professional English Expressions Used
+1. **Low-friction publishing** (저마찰 발행) - Emphasizes ease of process.
+2. **Cognitive offloading** (사고의 위임) - Psychological term often used in UX/productivity contexts.
+3. **Operational sustainability** (운영 지속 가능성) - Business/DevOps term applied to personal habits.
+4. **Authentic voice** (진정성 있는 목소리) - Crucial in content strategy and branding.
+5. **Iterative refinement** (점진적 정제) - Agile terminology applied to writing.
+
+### Technical Terminology Mapping
+- **"날것의 생각"** → **"Raw ideation" / "Unstructured thoughts"** (Distinguishes the initial creative phase from the final output)
+- **"글 정제"** → **"Content refinement"** (Professional term for editing/polishing)
+- **"지속하지 못했다"** → **"Lacked sustainability"** (Framing a personal failure as a process failure)
+- **"바이브 코딩"** → **"Vibe coding"** (Emerging industry term for AI-assisted coding based on intent rather than syntax)
+
+### Structure Rationale
+This post follows the **ADR (Architecture Decision Record)** format (Context -> Decision -> Consequences). Even though it's about a blog, treating the blog as a "system" with constraints and design choices makes the content more engineering-focused and justifies the "Why" behind the "How".
+
+### Interview Pitch (1-minute script)
+"Actually, I built this AI-driven blogging pipeline to solve a specific engineering problem: sustainability. I've always known that writing consolidates knowledge, but the 'transaction cost' of polishing a post—fixing grammar, formatting, checking facts—was so high that I kept abandoning my blogs.
+So, I decided to treat my blog like a software project. I created a strict guideline file, `CLAUDE.md`, that instructs an AI agent to refine my raw notes into published posts without altering the core logic or my personal voice. It's essentially cognitive offloading. The AI handles the packaging, allowing me to focus entirely on the architectural thinking. It's not about cheating; it's about optimizing the commit-to-publish workflow, similar to how we use linters in code. This approach has allowed me to maintain a weekly posting cadence while also using the process to practice professional English expression."
+{% endcomment %}
