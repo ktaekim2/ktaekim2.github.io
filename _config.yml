@@ -42,4 +42,7 @@ paginate_path: "/page:num/"
 timezone: Asia/Seoul
 
 # Language
-lang: ko
+lang: en
+# Plugins
+plugins:
+  - jekyll-feed
