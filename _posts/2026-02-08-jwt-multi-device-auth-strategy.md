@@ -5,6 +5,7 @@ date: 2026-02-08
 categories: [Backend, Security, Architecture]
 tags: [JWT, Spring Security, Authentication, Database]
 status: Accepted
+project_id: blog
 decision_makers: ktaekim
 description: "How to manage concurrent user sessions and force logout in a stateless JWT environment using a 1:N Refresh Token strategy."
 ---

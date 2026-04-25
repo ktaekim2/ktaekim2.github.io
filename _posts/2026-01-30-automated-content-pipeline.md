@@ -5,6 +5,7 @@ date: 2026-01-30
 categories: [DevOps, Automation, Career-Engineering]
 tags: [Python, CI/CD, Architecture, Productivity]
 status: Accepted
+project_id: blog
 decision_makers: ktaekim
 description: "Designing a publishing pipeline that separates private career strategies from public technical articles using a single source of truth."
 ---
@@ -27,7 +28,7 @@ I needed a system that supports **"One Source, Multi-View"**: A single Markdown 
 ## 2. Options Considered
 
 ### Option A: Two Separate Repositories (Manual Sync)
-- Keep `career-archive` (Private) and `tech-blog` (Public) completely separate.
+- Keep `career-archive` (Private) and the blog repo (`ktaekim2.github.io`) completely separate.
 - **Pros:** Clear separation of concerns. Zero risk of accidental leaks.
 - **Cons:** Violation of DRY (Don't Repeat Yourself). High friction to publish. I would likely stop updating one of them.
 
@@ -52,7 +53,7 @@ I chose **Option C: The "Filtered Publishing" Pipeline**.
 ### The Architecture
 I treat my career archive as the **"Upstream Source"** and the blog as the **"Downstream Artifact"**.
 
-1.  **Source:** `projects/tech-blog/*.md` in the private repo.
+1.  **Source:** `projects/**/adr/*.md` (only files with `layout: post`) in the private repo.
     *   Contains full context: Article + Raw Drafts + Interview Scripts.
 2.  **Transformation:** A Python script (`scripts/publish_blog.py`) acts as the ETL (Extract, Transform, Load) tool.
     *   **Extract:** Reads the Markdown file.

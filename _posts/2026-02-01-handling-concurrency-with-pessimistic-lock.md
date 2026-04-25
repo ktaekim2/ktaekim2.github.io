@@ -5,6 +5,7 @@ date: 2026-02-01
 categories: [Backend, Database, Concurrency]
 tags: [Java, Spring Boot, JPA, QueryDSL]
 status: Accepted
+project_id: blog
 decision_makers: ktaekim
 description: "Why I chose Pessimistic Locking over Optimistic Locking to ensure data integrity in a MICE forum reservation system."
 ---

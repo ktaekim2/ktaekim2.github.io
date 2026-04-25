@@ -5,6 +5,7 @@ date: 2026-01-03
 categories: [Career, Philosophy]
 tags: [Blogging, ADR, Thoughts]
 status: Accepted
+project_id: blog
 decision_makers: ktaekim
 description: "A decision record on why I chose to prioritize raw thought processes and architectural decisions over polished tutorials for this engineering blog."
 ---

@@ -5,6 +5,7 @@ date: 2026-01-03
 categories: [Automation, AI, Productivity]
 tags: [Gemini, Claude, Jekyll, CI/CD]
 status: Accepted
+project_id: blog
 decision_makers: ktaekim
 description: "How I leveraged AI tools to reduce the friction of technical writing, ensuring sustainability while preserving authentic engineering thoughts."
 ---
